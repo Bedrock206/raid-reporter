@@ -7,7 +7,7 @@ I am a novice at JS programming, and much of the code was derived from Adam Gask
 
 This bot was made for a specific server, but if you would like to use it in your own, download the report.js file and store it within your bot's files.
 
-Screenshots are available at [my website](bedrock206.net/raid-reporter).
+Screenshots are available at [my website](https://bedrock206.net/raid-reporter).
 
 ## Dependencies
 
