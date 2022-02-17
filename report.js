@@ -1,18 +1,7 @@
-/*
-To Berquist:
-
-This code integrates with a chat bot for Discord and the Bungie API for the video game Destiny 2.
-The large commented section at the bottom were notes for when I explored this API, which had rather limited documentation.
-Hope you enjoy reading it I suppose!
-*/
-
 const Discord = require('discord.js');
 const commando  = require('discord.js-commando');
 const axios = require('axios');
 const Chars = require("E:/Documents/RaidReporter/commands/destiny/chars.json");
-
-//const reportEmbed = new Discord.MessageEmbed()
-//    .setThumbnail(`https://bungie.net/${actIcon}/`)
 
 module.exports = class InfoCommand extends commando.Command {
     constructor(client) {
@@ -37,10 +26,6 @@ module.exports = class InfoCommand extends commando.Command {
 
     run(message, {playername,char}) {
 
-        //const wlkEmoji = commando.client.emoji.cache.get('844970434441117736');
-        //const ttnEmoji = commando.client.emoji.cache.get('844970434491449385');
-        //const htrEmoji = commando.client.emoji.cache.get('844970434604957786');
-
         var apiKey = "ff7a9d1f7ff8433bbf2cb0a624b330b5";
         /* ==== Get the last raid's unique id ====*/
         axios.get('https://www.bungie.net/platform/Destiny2/'+Chars[playername].type+'/Account/'+Chars[playername].id+'/Character/'+Chars[playername][char]+'/Stats/Activities?count=1&mode=4&page=0', {headers: {"X-API-Key" : apiKey}})
@@ -48,7 +33,6 @@ module.exports = class InfoCommand extends commando.Command {
                 grabRaidId(resp);
             })
             .catch(err => {console.log("RAID ACTIVITY ERROR"+err.response.data)});
-        //console.log('https://www.bungie.net/platform/Destiny2'+Chars[playername].type+'/Account/'+Chars[playername].id+'/Character/'+Chars[playername][char]+'/Stats/Activities?count=1&mode=4&page=0', {headers: {"X-API-Key" : apiKey}})
         /* ==== Store general values not grabbable from CarnageReport in vars for embed ====*/
         var instance;
         var date;
@@ -129,9 +113,6 @@ module.exports = class InfoCommand extends commando.Command {
                     j++;
                 };
                 playerListFormatted = playerAndClass.join(", ");
-                //console.log(playerAndClass);
-                //console.log(playerListFormatted);
-                //console.log(classList);
                 result()
             }else console.log("there is an issue");
         };
@@ -162,79 +143,13 @@ module.exports = class InfoCommand extends commando.Command {
         };
         /*
 		====Notes====
-		
-        https://www.bungie.net/platform/Destiny2/3/Account/4611686018485311223/Character/2305843009408899890/Stats/Activities?count=1&mode=4&page=0 = current working URL
-        console.log(json.Response.data.inventoryItem.itemName);
+	Membership type is 3 for PC players
 
-        bungie.net member id 20176530
-        destiny membership id 4611686018485311223
-        Membership type is 3 for PC players
-
-        Gjallerhorn, not working https://www.bungie.net/platform/Destiny/Manifest/InventoryItem/1274330687/
-        search https://www.bungie.net/platform/User/SearchUsers/?q=Bedrock206
-
-        Final Activity Request (DEPRECATED): /Destiny2/2/Account/4611686018485311223/Character/{characterId}/Stats/Activities/Stats/Activities?count=1&mode=4&page=0
-        
-        2305843009408899890 = Warlock
-        2305843009620785482 = ?
-        2305843009625886425 = ?
+        eSarch: https://www.bungie.net/platform/User/SearchUsers/?q=Bedrock206
 
         GOS = 3458480158
         DSC = 910380154
-        Lw  = 2122313384 (Normal???)
-
-        Stats:
-        Raid name/desc - done
-        icon/cover image 
-        List of players - done
-        Date - done
-        Time - done
-        Kills - done
-        Deaths - done
-        Best K/D - done
-
-        Arct:
-        Mem ID: 4611686018489419757
-        Hunter: 2305843009511555788
-        Titan : 2305843009529244212
-        Warlck: 2305843009504255088
-
-        Artemis:
-        Mem ID: 4611686018483161966
-        Hunter: 2305843009557454450
-        Titan : 2305843009527237233
-        Warlck: 2305843009404695939
-
-        Bedrock206:
-        Mem ID: 4611686018485311223
-        Hunter: 2305843009625886425
-        Titan : 2305843009620785482
-        Warlck: 2305843009408899890
-
-        chip:
-        Mem ID: 4611686018486353503
-        Hunter: 2305843009422224040
-        Titan : 2305843009468814898
-        Warlck: 2305843009453854204
-
-        Greenhydra410:
-        Mem ID: 4611686018448826710
-        Hunter: 2305843009537896302
-        Titan : 2305843009536276210
-        Warlck: 2305843009261708967
-
-        jeffus:
-        Mem ID: 4611686018510053256
-        Hunter: 2305843009738424766
-        Titan :
-        Warlck: 2305843009759065352
-
-        Rowan926:
-        Mem ID: 4611686018484422093
-        Hunter: 2305843009408505266
-        Titan : 2305843009492494957
-        Warlck: 2305843009556196981
-        */
+        Lw  = 2122313384 (Normal?)
                
     }
 }
