@@ -145,7 +145,7 @@ module.exports = class InfoCommand extends commando.Command {
 		====Notes====
 	Membership type is 3 for PC players
 
-        eSarch: https://www.bungie.net/platform/User/SearchUsers/?q=Bedrock206
+        User search: https://www.bungie.net/platform/User/SearchUsers/?q=Bedrock206
 
         GOS = 3458480158
         DSC = 910380154
