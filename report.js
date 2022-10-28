@@ -26,7 +26,7 @@ module.exports = class InfoCommand extends commando.Command {
 
     run(message, {playername,char}) {
 
-        var apiKey = "ff7a9d1f7ff8433bbf2cb0a624b330b5";
+        var apiKey = "API_KEY";
         /* ==== Get the last raid's unique id ====*/
         axios.get('https://www.bungie.net/platform/Destiny2/'+Chars[playername].type+'/Account/'+Chars[playername].id+'/Character/'+Chars[playername][char]+'/Stats/Activities?count=1&mode=4&page=0', {headers: {"X-API-Key" : apiKey}})
             .then(resp => {
